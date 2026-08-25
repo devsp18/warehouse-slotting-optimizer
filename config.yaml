@@ -1,0 +1,33 @@
+# ============================================================
+# Warehouse Slotting & Pick-Path Optimization Engine
+# All business assumptions live here (cite this file in the memo)
+# ============================================================
+
+data:
+  demand_source: "../service-parts-planning/data/processed/demand_monthly.csv"
+  # Path to Project 1's real demand output - pick frequency per part family
+  # is derived from this, not invented. If the file isn't found, the
+  # pipeline falls back to data/raw/demand_fallback.csv and MUST print a
+  # visible warning (never silently substitute).
+
+# Generic distribution-center layout - NOT any specific real facility.
+# No public source publishes Tesla's actual warehouse geometry; this is an
+# illustrative, industry-typical layout used to demonstrate the method.
+layout:
+  n_aisles: 8
+  bays_per_aisle: 20
+  levels_per_bay: 4          # vertical levels (ground = fastest pick)
+  aisle_width_ft: 12
+  bay_depth_ft: 4
+  dock_location: [0, 0]      # single receiving/shipping dock, corner of facility
+  level_time_penalty_sec: [0, 8, 16, 26]  # extra pick time per level (ground=0)
+
+slotting:
+  # Golden-zone principle: fastest-moving items closest to dock and at
+  # ground level. Optimization minimizes expected annual travel+pick time.
+  travel_speed_ft_per_sec: 4.0
+  picks_per_unit_demand: 1.0   # 1 pick event per demand unit (simplifying assumption)
+  reslotting_cost_per_move_usd: 12.0  # illustrative cost to physically move a slotted SKU
+
+comparison:
+  baseline_method: "alphabetical"  # naive baseline: SKUs slotted in name order
