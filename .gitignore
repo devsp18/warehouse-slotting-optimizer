@@ -7,3 +7,4 @@ data/raw/*
 data/processed/*.duckdb
 .DS_Store
 .streamlit/secrets.toml
+CLAUDE.md

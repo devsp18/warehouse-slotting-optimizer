@@ -1,9 +1,13 @@
 # Warehouse Slotting & Pick-Path Optimization Engine
 
-Assigns part families to storage locations in a distribution center to
-minimize total annual pick time - an exact linear assignment optimization
-(Hungarian algorithm), driven by real demand-velocity data from the
-[service-parts-planning](../service-parts-planning) project.
+A **storage and order fulfillment systems design** project: assigns part
+families to storage locations in a distribution center to minimize total
+annual pick time - an exact linear assignment optimization (Hungarian
+algorithm), driven by real demand-velocity data from the
+[service-parts-planning](../service-parts-planning) project. This is
+**material flow automation** applied to **facility design** - replacing a
+manual, rule-of-thumb slotting decision with an exact, defensible
+optimization.
 
 **Live dashboard:** _[Streamlit link]_
 
@@ -19,8 +23,9 @@ Limitations below.*
 
 Where you put a part in a warehouse determines how long it takes to pick -
 put your fastest-moving parts far from the dock and you pay that cost on
-every single pick, every day, forever. This project answers the question a
-facility planner owns:
+every single pick, every day, forever. **Warehouse automation** starts with
+getting this assignment right before any conveyor or robot ever moves a
+part. This project answers the question a facility planner owns:
 
 **Given real demand patterns, what storage assignment minimizes total
 annual pick-and-travel time - and how much better is that than a naive
